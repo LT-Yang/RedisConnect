@@ -4,23 +4,30 @@ import com.apigee.flow.execution.spi.Execution;
 import com.apigee.flow.execution.ExecutionContext;
 import com.apigee.flow.execution.ExecutionResult;
 import com.apigee.flow.message.MessageContext;
+import java.util.Map;
+
 import redis.clients.jedis.Jedis;
+
 
 public class RedisConnect implements Execution {
 
+
+    // Using property element
+    private Map <String,String> properties; // read-only
+
+    public RedisConnect(Map <String,String> properties) {
+        this.properties = properties;
+    }
+
     public ExecutionResult execute(MessageContext messageContext, ExecutionContext executionContext) {
 
-        try (Jedis jedis = new Jedis("10.99.107.100", 6379)) {
+        // Using value of header, change "hostIP" to "this.properties.get("hostIP")", and comment next line
+        String hostIP = messageContext.getVariable("private.hostIP");
+
+        try (Jedis jedis = new Jedis(hostIP, 6379)) {
 
             // Authenticate to Redis if needed
             jedis.auth("foobared");
-
-            // Ping Redis to test connection
-//            String response = jedis.ping();
-//            if (!"PONG".equalsIgnoreCase(response)) {
-//                messageContext.setVariable("redis.status", "ping failed");
-//                return ExecutionResult.ABORT;
-//            }
 
             // Read value from Redis
             String value = jedis.get("key1");
