@@ -12,7 +12,7 @@ import redis.clients.jedis.Jedis;
 public class RedisConnect implements Execution {
 
 
-    // Using property element
+    @SuppressWarnings("FieldMayBeFinal")
     private Map <String,String> properties; // read-only
 
     public RedisConnect(Map <String,String> properties) {
@@ -31,7 +31,7 @@ public class RedisConnect implements Execution {
             // Authenticate to Redis if needed
             jedis.auth("foobared");
 
-            // Read value from Redis
+            // Read value "key1" from Redis
             String value = jedis.get("key1");
 
             // Save the result into Apigee context
@@ -40,7 +40,6 @@ public class RedisConnect implements Execution {
             return ExecutionResult.SUCCESS;
 
         } catch (Exception e) {
-            // Optional: log the error
             messageContext.setVariable("redis.error", e.getMessage());
             return ExecutionResult.ABORT;
         }
