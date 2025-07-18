@@ -21,10 +21,12 @@ public class RedisConnect implements Execution {
 
     public ExecutionResult execute(MessageContext messageContext, ExecutionContext executionContext) {
 
-        // Using value of header, change "hostIP" to "this.properties.get("hostIP")", and comment next line
-        String hostIP = messageContext.getVariable("private.hostIP");
+        // Method1. Using KVMO Policy to obtain the hostIP stored in KVM,
+        // change "this.properties.get("hostIP")" to "hostIP" variable and uncomment next line.
+        // String hostIP = messageContext.getVariable("private.hostIP");
 
-        try (Jedis jedis = new Jedis(hostIP, 6379)) {
+        // Method2. Consuming value of property setting in the JavaCallout Policy
+        try (Jedis jedis = new Jedis(this.properties.get("hostIP"), 6379)) {
 
             // Authenticate to Redis if needed
             jedis.auth("foobared");
