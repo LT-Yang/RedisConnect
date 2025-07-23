@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="redis-envoy">
+  <DisplayName/>
+  <Description/>
+  <CreatedAt>1752807854934</CreatedAt>
+  <LastModifiedAt>1753261640770</LastModifiedAt>
+  <BasePaths>/redis-envoy</BasePaths>
+  <Policies>
+    <Policy>Java-RedisConnect</Policy>
+    <Policy>JS-ParsePayload</Policy>
+  </Policies>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+  <Resources>
+    <Resource>java://RedisConnect-2.0.jar</Resource>
+    <Resource>jsc://ParseContent.js</Resource>
+  </Resources>
+  <TargetEndpoints>
+    <TargetEndpoint>default</TargetEndpoint>
+  </TargetEndpoints>
+</APIProxy>

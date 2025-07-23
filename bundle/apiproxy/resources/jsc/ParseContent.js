@@ -1,0 +1,1 @@
+context.setVariable("response.content",context.getVariable("redis.key1.value"))

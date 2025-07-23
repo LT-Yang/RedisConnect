@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JavaCallout continueOnError="false" enabled="true" name="Java-RedisConnect">
+  <DisplayName>Java-RedisConnect</DisplayName>
+  <Properties>
+    <Property name="hostIP">10.96.5.201</Property>
+  </Properties>
+  <ClassName>com.cathay.RedisConnect</ClassName>
+  <ResourceURL>java://RedisConnect-2.0.jar</ResourceURL>
+</JavaCallout>
