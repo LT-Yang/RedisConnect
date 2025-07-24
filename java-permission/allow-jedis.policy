@@ -1,0 +1,7 @@
+grant codeBase "file:${javacallout.dir}/RedisConnect-1.0.jar"  {
+        permission java.net.SocketPermission "10.96.5.201:6379", "connect,resolve";
+        permission java.util.PropertyPermission "jedis.cluster.initNoError", "read";
+        permission java.util.PropertyPermission "jedis.bufferSize", "read";
+        permission java.util.PropertyPermission "jedis.bufferSize.output", "read";
+        permission java.util.PropertyPermission "jedis.bufferSize.input", "read";
+        }
