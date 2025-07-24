@@ -80,7 +80,7 @@ This is an expected security feature of Apigee. The Java security manager blocks
 
 To enable the connection, you must apply a custom Java policy file that grants SocketPermission to your Redis endpoint.
 
-Locate the Policy File: A template is provided in the [java-permission](java-permission/) directory. It contained all permissions that jedis need.
+Locate the Policy File: A template is provided in the [java-permission](java-permission/) directory. It contained all permissions that jedis need. Update the IP address and port to match your Redis endpoint.
 
 Customize the File: You must edit a java policy file to specify the exact IP address and port of your Redis instance.
 
