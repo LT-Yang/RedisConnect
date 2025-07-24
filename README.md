@@ -1,37 +1,41 @@
-# Apigee Connect to Redis 
+# Apigee Connect to Redis
 
-This directory contains the Java source code and pom.xml file required to
-compile a Java callout for Apigee. This callout is mainly for a sample to connect the Redis using Jedis.
+This directory contains the Java source code and pom.xml file required to compile a simple Java callout for Apigee,
+this callout is mainly for a sample to connect the Redis using Jedis.
 
-## Building:
+You can directly download the [bundle](bundle/), and upload it as a proxy bundle. Or you can clone
+the [callout](callout/) directory, following steps below to build the jar file and deploy proxy.
 
-1. Download all files. 
+## Building
 
-2. Set the workspace under redisconnect, run
-   ```mvn clean package```
+1. Download all files.
+
+2. Set the workspace under redisconnect/callout, run
+   ```
+   mvn clean package
+   ```
 
 3. Upload the jar file into the API Proxy via the Apigee API Proxy Editor.
 
-4. Create the JavaCallout policy. It should look like this:
+4. Create a JavaCallout policy in Apigee. It should look like this:
    ```xml
    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
    <JavaCallout continueOnError="false" enabled="true" name="Java-RedisConnect">
    <DisplayName>Java-RedisConnect</DisplayName>
-   <Properties/>
-   <ClassName>com.tommy.RedisConnect</ClassName>
+   <Properties>
+     <Property name="hostIP">10.96.5.201</Property> <!--Use your own redis endpoint IP.-->
+   </Properties>
+   <ClassName>com.cathay.RedisConnect</ClassName>
    <ResourceURL>java://RedisConnect-1.0.jar</ResourceURL>
-   </JavaCallout>
+   </JavaCallout> 
    ```
 
-5. Use the Google Cloud Console UI to deploy the proxy.
+5. Deploy the proxy using the Google Cloud Console.
    
-6. Use a client to generate and send http requests to the proxy.
+6. Use a client application, such as cURL or Postman, to send HTTP requests to the proxy.
    ```
    curl -i https://my-endpoint.net/basePath
    ```
-
-
-
 
 ## Dependencies
 
