@@ -21,17 +21,17 @@ public class RedisConnect implements Execution {
 
     public ExecutionResult execute(MessageContext messageContext, ExecutionContext executionContext) {
 
-        // Method1. Using KVMO Policy to obtain the hostIP stored in KVM,
-        // change "this.properties.get("hostIP")" to "hostIP" variable and uncomment next line.
-        // String hostIP = messageContext.getVariable("private.hostIP");
-
-        // Method2. Consuming value of property setting in the JavaCallout Policy
+        // Method1. Consuming value of property setting in the JavaCallout Policy
         try (Jedis jedis = new Jedis(this.properties.get("hostIP"), 6379)) {
+
+        // Method2. Using KVMO Policy to obtain the hostIP stored in KVM,
+        // change "this.properties.get("hostIP")" to "private.hostIP" variable and uncomment next line.
+        // String hostIP = messageContext.getVariable("private.hostIP");
 
             // Authenticate to Redis if needed
             jedis.auth("foobared");
 
-            // Read value "key1" from Redis
+            // Read value "key1" from Redis, need to change this to the exact key value you want to retrieve
             String value = jedis.get("key1");
 
             // Save the result into Apigee context
